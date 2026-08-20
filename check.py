@@ -10,6 +10,7 @@ rules = {
     "'셀러' 금지(FMS=물류 관리 시스템)": s.count("셀러"),
     "단정체(~이다.) 금지": len(re.findall(r"[가-힣]+이다\.", s)),
     "약자 물결(~Npx) 금지(→약 Npx)": len(re.findall(r"[^0-9]~\d+px", s)),
+    "OG 메타 누락(og:image 필수)": 0 if "og:image" in s else 1,
 }
 fail = {k: v for k, v in rules.items() if v}
 for k, v in rules.items():
