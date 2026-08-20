@@ -109,8 +109,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 
 <section class="panel active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
 
-<h2><span class="no">01</span>지면이 동작하는 방식</h2>
-<p>배너는 <code>&lt;img&gt;</code>가 아니라 <strong>배경 이미지</strong>로 렌더링됩니다. 높이는 <strong>PC 90px / 모바일 70px 고정</strong>, 가로는 원본 비율을 유지한 채 <strong>화면 중앙에 정렬</strong>됩니다. 화면이 이미지보다 좁으면 좌우가 잘리고, 넓으면 좌우 빈 공간에 <strong>배너별로 지정된 배경색</strong>이 노출됩니다. 클릭 영역은 배너 전체(링크 1개)입니다.</p>
+<h2><span class="no">01</span>노출 위치</h2>
 <div class="diagram" style="padding:16px">
 <svg viewBox="0 0 640 268" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif" style="min-width:560px;max-width:640px;margin:0 auto">
   <rect x="20" y="10" width="600" height="230" rx="8" fill="var(--surface)" stroke="var(--border)"/>
@@ -130,17 +129,22 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
   <text x="320" y="262" text-anchor="middle" fill="var(--ink-soft)" font-size="11">fassto.ai 접속 시 최상단(메뉴 위)에 노출됩니다</text>
 </svg>
 </div>
-<div class="callout">핵심: <strong>"중앙은 안전, 양끝은 유동"</strong>인 지면입니다. 텍스트는 중앙에 모으고, 이미지 양끝을 단색으로 마감해야 어떤 화면 폭에서도 깨지지 않습니다.</div>
+<ul>
+  <li>fassto.ai 모든 페이지 최상단(메뉴 위)에 노출됩니다. 배너는 롤링 형태로 노출됩니다.</li>
+  <li>배너 전체가 클릭 영역입니다(링크 1개).</li>
+</ul>
 
 <h2><span class="no">02</span>제작 사이즈</h2>
 <div class="tablewrap"><table>
-<tr><th>구분</th><th>디자인 캔버스 (@1x)</th><th>전달 원본 (@2x, PNG)</th><th>비고</th></tr>
-<tr><td>PC</td><td><b class="dim">1365 × 90</b></td><td><b class="dim">2730 × 180</b></td><td>현행 서비스 배너 원본과 동일 규격</td></tr>
-<tr><td>모바일</td><td><b class="dim">375 × 70</b></td><td><b class="dim">750 × 140</b></td><td>모바일 노출 높이 70px 고정 기준</td></tr>
+<tr><th>구분</th><th>디자인 캔버스 (@1x)</th><th>전달 원본 (@2x)</th><th>파일 포맷</th></tr>
+<tr><td>PC</td><td><b class="dim">1365 × 90</b></td><td><b class="dim">2730 × 180</b></td><td>PNG</td></tr>
+<tr><td>모바일</td><td><b class="dim">375 × 70</b></td><td><b class="dim">750 × 140</b></td><td>PNG</td></tr>
 </table></div>
-<p>파일 포맷은 <strong>PNG</strong>입니다(현행 서비스 배너 기준). 모바일 이미지를 따로 전달하지 않으면 PC 이미지가 그대로 쓰이며 <strong>중앙 약 480px만 보입니다.</strong> PC용과 모바일용 2종 제작을 권장합니다.</p>
+<ul>
+  <li>PC용과 모바일용 <strong>2종</strong>을 제작합니다. 모바일 이미지가 없으면 PC 이미지의 중앙 부분만 모바일에 노출됩니다.</li>
+</ul>
 
-<h2><span class="no">03</span>안전 영역 · PC (1365×90)</h2>
+<h2><span class="no">03</span>안전 영역</h2>
 <div class="diagram">
 <svg viewBox="0 0 1425 260" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
   <g transform="translate(30,60)">
@@ -179,9 +183,6 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
   <span><i class="sw" style="background:var(--bleed);opacity:.4"></i>배경 연장·패턴만 (의미 요소 금지)</span>
 </div>
 </div>
-<div class="callout"><strong>좌우 끝 마감 규칙</strong> · 이미지 좌우 양끝은 단색으로 마감하고, 그 색상값(HEX)을 배너 전달 시 함께 알려 주세요. 파스토가 게시할 때 배경색으로 지정합니다. 1366px보다 넓은 모니터에서는 이 배경색이 이미지 양옆으로 이어져 보이기 때문에, 양끝이 그라데이션이나 패턴이면 경계선이 생깁니다.</div>
-
-<h2><span class="no">04</span>안전 영역 · 모바일 (375×70)</h2>
 <div class="diagram">
 <svg viewBox="0 0 435 195" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif" style="min-width:480px;max-width:560px;margin:0 auto">
   <g transform="translate(30,42)">
@@ -210,23 +211,13 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 </svg>
 </div>
 <ul>
-  <li>노출 높이는 70px 고정이며, 이미지는 PC와 동일하게 화면 중앙에 놓입니다.</li>
-  <li>좁은 기기(360px)에서는 좌우 각 8px 정도가 잘리므로 텍스트는 여유 있게 <strong>중앙 340px</strong> 안에 배치합니다.</li>
-  <li>참고: 현행 코드에서는 <strong>화면 폭 375px 이하에서만 모바일 이미지가 적용</strong>됩니다. 그보다 넓은 기기(390~430px급)에서는 PC 이미지가 중앙 크롭되어 표시되므로, PC 이미지의 중앙 460px 안전영역 규칙이 모바일 노출까지 지켜 줍니다.</li>
-  <li>모바일 이미지도 좌우는 단색으로 마감해 주세요. 적용 기준이 달라져도 안전합니다.</li>
-  <li>PC와 같은 카피를 유지하고, 데코 오브젝트 수만 줄입니다.</li>
+  <li>화면 폭에 따라 이미지 좌우가 잘리는 지면입니다. <strong>텍스트·로고는 PC 중앙 460px, 모바일 중앙 340px 안에</strong> 배치합니다.</li>
+  <li><strong>이미지 좌우 끝은 단색으로 마감</strong>하고, 그 색상값(HEX)을 전달 시 함께 알려 주세요. 넓은 화면에서는 이 색이 이미지 양옆으로 이어져 노출됩니다.</li>
+  <li>중앙 정렬 기준으로 제작합니다. 다른 배치가 필요하면 파스토 담당자와 먼저 협의해 주세요.</li>
 </ul>
 
-<h2><span class="no">05</span>타이포그래피 · 콘텐츠 구성</h2>
-<p>구성은 두 버전이 동일합니다. <strong>헤드라인 1줄 + 서브카피 1줄</strong>, 메시지는 배너당 1개만 담습니다. 배치는 중앙 정렬이 기본이지만 필수는 아닙니다. 지켜야 하는 것은 정렬 방식이 아니라 <strong>안전영역</strong>입니다.</p>
-<ul>
-  <li><strong>중앙 배치(기본·권장)</strong>: 텍스트 중앙 + 오브젝트 좌우. 기존 배너가 모두 이 방식이며, PC 이미지를 모바일에 재사용해도 안전한 유일한 구성입니다.</li>
-  <li><strong>좌측 텍스트 + 우측 오브젝트 배치도 가능</strong>합니다. 단 두 가지 조건이 있습니다.
-    <br>① 텍스트는 PC 안전영역 왼쪽 경계(x 180)보다 오른쪽에서 시작해야 합니다. 그보다 왼쪽은 좁은 PC 화면에서 잘립니다.
-    <br>② 모바일 이미지를 별도 제작해도, 현행 코드에서는 <strong>화면 폭 375px 이하에서만 모바일 이미지가 적용</strong>됩니다. 376~430px 기기에서는 PC 이미지가 중앙 크롭되어 좌측 텍스트가 잘리므로, 좌측 배치를 쓰려면 파스토 담당자와 적용 기준을 먼저 협의해 주세요.</li>
-  <li>참고: 이 지면은 이미지를 항상 화면 중앙에 놓기 때문에, <strong>화면 왼쪽 끝에 붙는 레이아웃은 만들 수 없습니다.</strong> 넓은 모니터에서는 좌측 정렬 구성도 화면 중앙 블록의 왼쪽에 보입니다.</li>
-  <li>데코 오브젝트(3D 아이콘 등)는 텍스트를 침범하지 않게 배치합니다.</li>
-</ul>
+<h2><span class="no">04</span>타이포그래피 · 카피</h2>
+<p><strong>헤드라인 1줄 + 서브카피 1줄</strong>, 메시지는 배너당 1개만 담습니다.</p>
 <div class="tablewrap"><table>
 <tr><th>요소</th><th>PC (1365×90 @1x)</th><th>모바일 (375×70 @1x)</th><th>비고</th></tr>
 <tr><td>헤드라인</td><td><b class="dim">26~32px</b> Bold</td><td><b class="dim">16~20px</b> Bold</td><td>현행 배너 실측 약 28px / 한 줄 유지</td></tr>
@@ -236,13 +227,14 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 <tr><td>텍스트 폭</td><td>중앙 460px 이내</td><td>중앙 340px 이내</td><td>안전영역(03·04절)과 동일</td></tr>
 <tr><td>글자 수 (공백 포함)</td><td>헤드라인 15자 · 서브카피 25자 내외</td><td>PC와 동일 카피</td><td>안전영역 폭 기준 환산. 현행 배너: 헤드라인 14자·서브 24자</td></tr>
 </table></div>
-<p style="font-size:13.5px;color:var(--ink-soft)">※ @2x 전달 원본에서는 모든 수치 2배 (예: PC 헤드라인 52~64px). 폰트는 파스토 홈페이지 기본 서체 계열(Pretendard)을 권장합니다.</p>
 <ul>
+  <li>폰트는 파스토 홈페이지 기본 서체 계열(Pretendard)을 권장합니다. @2x 전달 원본에서는 모든 수치가 2배입니다.</li>
+  <li>데코 오브젝트(3D 아이콘 등)는 텍스트 좌우에 배치하고 텍스트를 침범하지 않습니다.</li>
   <li>배경색은 브랜드 컬러(찐초록 <code>#02855B</code>, 연초록 <code>#00C186</code>)를 우선 사용합니다. 시즌·제휴 배너는 예외를 허용합니다.</li>
   <li>카피 규칙: 영문 약어 지양(평이한 한국어로 풀어쓰기) · 단정 표현 금지(확인된 일자·수치만 사용) · 날짜 표기 시 요일 검증.</li>
 </ul>
 
-<h2><span class="no">06</span>제작 예시</h2>
+<h2><span class="no">05</span>제작 예시</h2>
 <p>현재 fassto.ai에 게시 중인 실제 배너입니다.</p>
 <p><strong>PC 노출 (1365×90)</strong> · 점선이 텍스트 안전영역(중앙 460px)입니다.</p>
 <div class="diagram" style="padding:16px">
@@ -255,46 +247,33 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
     <span>헤드라인 약 28px Bold · 서브카피 약 15px · 줄 간격 10px · 텍스트 블록 상하 여백 약 21px (@1x 실측)</span>
   </div>
 </div>
-<p><strong>모바일 노출 (375×70)</strong> · 같은 이미지가 모바일에서는 중앙 부분만 보입니다. 실서비스와 동일한 방식으로 렌더링한 모습입니다.</p>
+<p><strong>모바일 노출 (375×70)</strong> · 같은 이미지가 모바일에서는 중앙 부분만 보입니다.</p>
 <div class="diagram" style="padding:16px">
   <div style="width:375px;max-width:100%;height:70px;margin:0 auto;background-image:url(https://cdn.fassto.ai/resources/imagesHome/header_banner_overseas_240809.png);background-size:auto 100%;background-position:50% 100%;background-repeat:no-repeat;background-color:#008193;border-radius:4px"></div>
   <div class="legend" style="justify-content:center;padding-top:12px">
     <span>텍스트가 중앙 안전영역 안에 있어 모바일에서도 메시지가 온전히 보입니다</span>
   </div>
 </div>
-<ul>
-  <li>텍스트와 핵심 오브젝트가 모두 중앙 460px 안에 있어, 모바일에서 이 이미지를 그대로 써도 메시지가 온전히 보입니다.</li>
-  <li>좌우 끝이 단색으로 마감되어 있고, 같은 색이 배경색으로 지정되어 있어 넓은 모니터에서도 자연스럽게 이어집니다.</li>
-</ul>
 
-<h2><span class="no">07</span>전달·게시</h2>
-<ul>
-  <li>배너별로 <strong>이미지(PC/모바일) · 링크 URL · 배경색 · 노출 기간</strong>을 함께 전달해 주세요.</li>
-  <li>배너는 롤링 형태로 노출됩니다. 게시는 파스토 내부 절차를 거치므로, 노출 일정이 있으면 여유를 두고 전달해 주세요.</li>
-  <li>랜딩 URL은 실링크 동작을 확인한 뒤 전달합니다. 배너 전체가 클릭 영역입니다.</li>
-  <li>AI 생성 이미지를 사용할 때는 AI 생성물임을 표기합니다.</li>
-</ul>
-<p>전달 시 아래 항목을 이미지와 함께 보내 주세요.</p>
-<div class="callout" style="font-weight:400"><strong>전달 양식</strong> · 캠페인명 · 노출 기간(시작일~종료일) · 랜딩 URL · 배경색 HEX(홈페이지 띠배너만) · 이미지 파일(홈페이지: PC·모바일 2종 / FMS: 카드 1종, PNG @2x)</div>
-
-<h2><span class="no">08</span>제작 체크리스트</h2>
+<h2><span class="no">06</span>전달</h2>
+<p>완성된 배너 이미지와 아래 항목을 함께 보내 주시면 파스토가 게시를 진행합니다. 게시는 내부 절차를 거치므로 노출 일정이 있으면 여유를 두고 전달해 주세요.</p>
+<div class="callout" style="font-weight:400"><strong>전달 양식</strong> · 캠페인명 · 노출 기간(시작일~종료일) · 랜딩 URL · 배경색 HEX · 이미지 파일(PC·모바일 2종, PNG @2x)</div>
 <ul class="check">
   <li>PC 2730×180, 모바일 750×140 PNG(@2x) 2종 모두 제작</li>
-  <li>텍스트·로고를 안전영역 안에 배치 (중앙 배치: PC 중앙 460px / 모바일 중앙 340px · 좌측 배치: x 180 왼쪽 침범 금지 + 사전 협의, 05절)</li>
-  <li>좌우 끝 단색 마감 + 해당 색상값을 함께 전달 (PC·모바일 공통)</li>
+  <li>텍스트·로고를 안전영역 안에 배치 (PC 중앙 460px / 모바일 중앙 340px)</li>
+  <li>좌우 끝 단색 마감 + 해당 색상값(HEX) 확인</li>
   <li>헤드라인 1줄 + 서브카피 1줄, 메시지 1개 유지</li>
-  <li>폰트 크기 규격 준수 (모바일 서브카피 11px@1x 미만 금지)</li>
+  <li>폰트 크기·글자 수 규격 준수</li>
   <li>카피 규칙 준수 (영문 약어·단정 표현·요일 검증)</li>
   <li>랜딩 URL 동작 확인</li>
-  <li>캠페인명 · 노출 기간을 이미지와 함께 전달</li>
+  <li>AI 생성 이미지 사용 시 AI 생성물임을 표기</li>
 </ul>
 
 </section>
 
 <section class="panel" id="panel-fms" role="tabpanel" aria-labelledby="tab-fms">
 
-<h2><span class="no">01</span>지면이 동작하는 방식</h2>
-<p>FMS는 파스토 고객사가 입고·재고·출고 등 물류 전반을 조회하고 요청하는 <strong>물류 관리 시스템</strong>입니다. 이 배너는 FMS 로그인 후 <strong>모든 화면의 좌측 사이드바 하단</strong>에 노출되는 카드형 배너입니다. 배너는 롤링 형태로 노출됩니다. 이미지는 사이드바 폭에 맞춰 <strong>가로 100%로 표시</strong>되고(현재 약 230px), 지면이 <strong>비율 23:10을 고정</strong>하므로 다른 비율로 제작하면 이미지가 변형됩니다. 잘리는 영역은 없습니다. 클릭 영역은 카드 전체(링크 1개)이며, 링크는 새 탭으로 열립니다.</p>
+<h2><span class="no">01</span>노출 위치</h2>
 <div class="diagram" style="padding:16px">
 <svg viewBox="0 0 640 268" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif" style="min-width:560px;max-width:640px;margin:0 auto">
   <rect x="20" y="10" width="600" height="230" rx="8" fill="var(--surface)" stroke="var(--border)"/>
@@ -315,17 +294,21 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
   <text x="320" y="262" text-anchor="middle" fill="var(--ink-soft)" font-size="11">FMS 로그인 후 모든 화면의 좌측 사이드바 하단에 노출됩니다</text>
 </svg>
 </div>
-<div class="callout">핵심: 잘리는 영역은 없지만 <strong>가로 230px의 작은 지면</strong>입니다. 문구를 최소화하고 글자 크기를 규격 아래로 줄이지 않는 것이 중요합니다.</div>
+<ul>
+  <li>FMS는 파스토 고객사가 입고·재고·출고 등 물류 전반을 조회하고 요청하는 물류 관리 시스템입니다.</li>
+  <li>로그인 후 모든 화면의 좌측 사이드바 하단에 노출됩니다. 배너는 롤링 형태로 노출됩니다.</li>
+  <li>카드 전체가 클릭 영역이며(링크 1개), 링크는 새 탭으로 열립니다.</li>
+</ul>
 
 <h2><span class="no">02</span>제작 사이즈</h2>
 <div class="tablewrap"><table>
-<tr><th>구분</th><th>디자인 캔버스 (@1x)</th><th>전달 원본 (@2x, PNG)</th><th>비고</th></tr>
-<tr><td>카드</td><td><b class="dim">230 × 100</b></td><td><b class="dim">460 × 200</b></td><td>현행 서비스 배너 원본과 동일 규격 · 비율 23:10 고정(지면이 강제)</td></tr>
+<tr><th>구분</th><th>디자인 캔버스 (@1x)</th><th>전달 원본 (@2x)</th><th>파일 포맷</th></tr>
+<tr><td>카드</td><td><b class="dim">230 × 100</b></td><td><b class="dim">460 × 200</b></td><td>PNG</td></tr>
 </table></div>
 <ul>
-  <li>PC/모바일 구분 없이 <strong>1종만 제작</strong>합니다. FMS는 모바일에서도 PC 화면이 그대로 표시되는 구조여서 별도 모바일 버전이 필요 없습니다.</li>
-  <li>비율(23:10)이 다르면 이미지가 변형되므로 캔버스 비율을 그대로 유지합니다.</li>
-  <li>파일 포맷은 <strong>PNG</strong>입니다(현행 서비스 배너 기준).</li>
+  <li>PC/모바일 구분 없이 <strong>1종만 제작</strong>합니다.</li>
+  <li><strong>비율 23:10을 유지</strong>합니다. 비율이 다르면 이미지가 변형됩니다.</li>
+  <li>화면에도 230×100 크기 그대로 노출되는 작은 지면입니다. 문구를 최소화하고 글자 크기를 규격 아래로 줄이지 않습니다.</li>
 </ul>
 
 <h2><span class="no">03</span>레이아웃 · 타이포그래피</h2>
@@ -345,18 +328,14 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 </svg>
 </div>
 <ul>
-  <li><strong>타이틀 1줄(약 18px Bold) + 서브카피 1~2줄(13~14px)</strong>을 좌측 정렬로 구성합니다 (현행 배너 실측 기준).</li>
+  <li><strong>타이틀 1줄(약 18px Bold) + 서브카피 1~2줄(13~14px)</strong>을 좌측 정렬로 구성합니다. 서브카피 12px 미만은 금지합니다.</li>
+  <li>글자 수(공백 포함)는 타이틀 10자, 서브카피 줄당 12자 내외를 권장합니다.</li>
   <li>좌측 여백 20px, 상단 여백 14px 내외를 지키고, 텍스트와 일러스트가 겹치지 않게 배치합니다.</li>
-  <li>글자 수(공백 포함)는 타이틀 10자, 서브카피 줄당 12자 내외를 권장합니다. 현행 배너(타이틀 9자) 기준입니다.</li>
-  <li>지면이 작으므로 서브카피 12px 미만은 금지합니다.</li>
   <li>배경은 브랜드 컬러 단색 또는 은은한 그라데이션을 사용합니다. 카드 모서리(둥근 처리)는 시스템이 적용하므로 직각으로 제작합니다.</li>
   <li>카피 규칙은 띠배너와 동일합니다 (영문 약어 지양 · 단정 표현 금지 · 요일 검증).</li>
 </ul>
 
-<h2><span class="no">04</span>띠배너와 세트로 제작할 때</h2>
-<p>같은 캠페인을 홈페이지와 FMS에 함께 노출하는 경우 <strong>PC 띠배너(1365×90) + 모바일 띠배너(375×70) + FMS 카드(230×100) 3종 세트</strong>로 제작합니다. 카피와 오브젝트는 공유하되, 카드는 지면이 작으므로 문구를 한 번 더 줄입니다.</p>
-
-<h2><span class="no">05</span>제작 예시</h2>
+<h2><span class="no">04</span>제작 예시</h2>
 <p>현재 FMS에 게시 중인 실제 배너입니다. 화면에도 이 크기(230×100) 그대로 노출됩니다.</p>
 <div class="diagram" style="padding:16px">
   <img src="https://cdn.fassto.ai/resources/banner/banner_bizBooster.png" alt="파스토 비즈부스터 카드 배너 예시" style="display:block;width:230px;max-width:100%;margin:0 auto;border-radius:6px">
@@ -365,7 +344,9 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
   </div>
 </div>
 
-<h2><span class="no">06</span>제작 체크리스트</h2>
+<h2><span class="no">05</span>전달</h2>
+<p>완성된 배너 이미지와 아래 항목을 함께 보내 주시면 파스토가 게시를 진행합니다. 홈페이지 띠배너와 같은 캠페인이면 <strong>PC 띠배너 + 모바일 띠배너 + FMS 카드 3종 세트</strong>로 전달해 주세요.</p>
+<div class="callout" style="font-weight:400"><strong>전달 양식</strong> · 캠페인명 · 노출 기간(시작일~종료일) · 랜딩 URL · 이미지 파일(카드 1종, PNG @2x)</div>
 <ul class="check">
   <li>460×200 PNG(@2x), 비율 23:10 준수</li>
   <li>좌 20px·상 14px(@1x) 내부 여백 확보</li>
@@ -373,7 +354,6 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
   <li>실제 크기(230×100)로 미리보기 후 가독성 확인</li>
   <li>카피 규칙 준수 (영문 약어·단정 표현·요일 검증)</li>
   <li>랜딩 URL 동작 확인</li>
-  <li>캠페인명 · 노출 기간 · 랜딩 URL을 이미지와 함께 전달</li>
 </ul>
 
 </section>
