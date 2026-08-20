@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="description" content="fassto.ai 홈페이지 상단 띠배너 제작 규격 안내">
-<title>파스토 띠배너 제작 가이드</title>
+<meta name="description" content="파스토 홈페이지 상단 띠배너·FMS 좌측 배너 제작 규격 안내">
+<title>파스토 배너 제작 가이드</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 </head>
 <body>
@@ -15,14 +15,17 @@
   --primary:#02855B; --secondary:#00C186; --border:#D2D6DB; --border-soft:#e7eaee;
   --safe-text:#02855B; --safe-pc:#009CA6; --bleed:#c2532e;
   --code-bg:#eef1f4;
+  --glass:rgba(255,255,255,.62); --glass-border:rgba(53,61,74,.12);
+  --tint1:rgba(2,133,91,.06); --tint2:rgba(0,156,166,.05);
 }
-:root:not([data-theme="light"]){}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#14181f; --surface:#1c222b; --ink:#e8ecef; --ink-soft:#9aa3af;
     --primary:#00C186; --secondary:#02855B; --border:#3a424e; --border-soft:#2a313b;
     --safe-text:#00C186; --safe-pc:#31b7c0; --bleed:#e07a52;
     --code-bg:#242b35;
+    --glass:rgba(28,34,43,.62); --glass-border:rgba(232,236,239,.12);
+    --tint1:rgba(0,193,134,.07); --tint2:rgba(49,183,192,.06);
   }
 }
 :root[data-theme="dark"]{
@@ -30,19 +33,40 @@
   --primary:#00C186; --secondary:#02855B; --border:#3a424e; --border-soft:#2a313b;
   --safe-text:#00C186; --safe-pc:#31b7c0; --bleed:#e07a52;
   --code-bg:#242b35;
+  --glass:rgba(28,34,43,.62); --glass-border:rgba(232,236,239,.12);
+  --tint1:rgba(0,193,134,.07); --tint2:rgba(49,183,192,.06);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
+  background-image:radial-gradient(900px 420px at 12% -5%, var(--tint1), transparent 60%),
+                   radial-gradient(900px 420px at 95% 8%, var(--tint2), transparent 60%);
+  background-attachment:fixed;
   font-family:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   line-height:1.7;font-size:15.5px}
 main{max-width:880px;margin:0 auto;padding:48px 24px 80px}
-header.doc{border-bottom:2px solid var(--primary);padding-bottom:24px;margin-bottom:40px}
+header.doc{border-bottom:2px solid var(--primary);padding-bottom:24px;margin-bottom:24px}
 .eyebrow{color:var(--primary);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px}
 h1{font-size:30px;font-weight:900;margin:0 0 10px;letter-spacing:-.01em;text-wrap:balance}
 .meta{color:var(--ink-soft);font-size:13.5px;margin:0}
+.tabs{position:sticky;top:12px;z-index:10;display:flex;gap:8px;padding:8px;margin:0 0 36px;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
+  backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:0 8px 28px rgba(20,30,40,.08)}
+.tabs button{flex:1;border:0;cursor:pointer;padding:12px 10px;border-radius:11px;
+  background:transparent;color:var(--ink-soft);font:inherit;font-weight:700;font-size:14.5px;
+  transition:background .18s,color .18s}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--primary);color:#fff}
+.tabs button:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.tabs .slot{display:block;font-weight:400;font-size:11.5px;opacity:.85}
+.panel{display:none}
+.panel.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.panel.active{animation:none}}
 h2{font-size:20px;font-weight:700;margin:48px 0 14px;letter-spacing:-.01em;
   display:flex;align-items:baseline;gap:10px}
 h2 .no{color:var(--primary);font-weight:900;font-size:15px;font-variant-numeric:tabular-nums}
+.panel h2:first-child{margin-top:8px}
 p{margin:0 0 14px}
 strong{font-weight:700}
 .callout{background:var(--surface);border:1px solid var(--border-soft);border-left:4px solid var(--primary);
@@ -74,9 +98,16 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 <main>
 <header class="doc">
   <p class="eyebrow">FASSTO · Banner Spec</p>
-  <h1>홈페이지 상단 띠배너 제작 가이드</h1>
-  <p class="meta">fassto.ai 최상단 롤링 배너 지면 · 2026-08 기준</p>
+  <h1>파스토 배너 제작 가이드</h1>
+  <p class="meta">홈페이지 상단 띠배너 · FMS 좌측 배너 · 2026-08 기준 · 제휴 파트너 공유용</p>
 </header>
+
+<nav class="tabs" role="tablist" aria-label="배너 지면 선택">
+  <button role="tab" id="tab-home" aria-selected="true" aria-controls="panel-home">홈페이지 상단 띠배너<span class="slot">fassto.ai 최상단 롤링 배너</span></button>
+  <button role="tab" id="tab-fms" aria-selected="false" aria-controls="panel-fms">FMS 좌측 배너<span class="slot">셀러 시스템 사이드바 하단 카드</span></button>
+</nav>
+
+<section class="panel active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
 
 <h2><span class="no">01</span>지면이 동작하는 방식</h2>
 <p>배너는 <code>&lt;img&gt;</code>가 아니라 <strong>배경 이미지</strong>로 렌더링됩니다. 높이는 <strong>PC 90px / 모바일 70px 고정</strong>, 가로는 원본 비율을 유지한 채 <strong>화면 중앙에 정렬</strong>됩니다. 화면이 이미지보다 좁으면 좌우가 잘리고, 넓으면 좌우 빈 공간에 <strong>배너 등록 시 함께 입력한 배경색</strong>이 노출됩니다. 클릭 영역은 배너 전체(링크 1개)입니다.</p>
@@ -93,28 +124,19 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 <h2><span class="no">03</span>안전 영역 · PC (1365×90)</h2>
 <div class="diagram">
 <svg viewBox="0 0 1425 260" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
-  <!-- canvas frame: 1365 wide → 1px = 1 unit, offset 30 -->
   <g transform="translate(30,60)">
-    <!-- bleed zones -->
     <rect x="0" y="0" width="180" height="90" fill="var(--bleed)" opacity="0.18"/>
     <rect x="1185" y="0" width="180" height="90" fill="var(--bleed)" opacity="0.18"/>
-    <!-- pc safe -->
     <rect x="180" y="0" width="1005" height="90" fill="var(--safe-pc)" opacity="0.14"/>
-    <!-- text safe -->
     <rect x="452" y="0" width="460" height="90" fill="var(--safe-text)" opacity="0.22"/>
-    <!-- canvas border -->
     <rect x="0" y="0" width="1365" height="90" fill="none" stroke="var(--ink)" stroke-width="2"/>
-    <!-- zone borders -->
     <line x1="180" y1="0" x2="180" y2="90" stroke="var(--safe-pc)" stroke-width="1.5" stroke-dasharray="6 4"/>
     <line x1="1185" y1="0" x2="1185" y2="90" stroke="var(--safe-pc)" stroke-width="1.5" stroke-dasharray="6 4"/>
     <line x1="452" y1="0" x2="452" y2="90" stroke="var(--safe-text)" stroke-width="1.5" stroke-dasharray="6 4"/>
     <line x1="912" y1="0" x2="912" y2="90" stroke="var(--safe-text)" stroke-width="1.5" stroke-dasharray="6 4"/>
-    <!-- center mark -->
     <line x1="682" y1="-8" x2="682" y2="98" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2 3"/>
-    <!-- mock content -->
     <text x="682" y="40" text-anchor="middle" fill="var(--ink)" font-size="21" font-weight="900">헤드라인 한 줄 (메시지 1개)</text>
     <text x="682" y="66" text-anchor="middle" fill="var(--ink-soft)" font-size="12.5">서브카피 한 줄 (혜택 조건 · 기간 · 유도 문구)</text>
-    <!-- x-axis ruler -->
     <g fill="var(--ink-soft)" font-size="12" font-variant-numeric="tabular-nums">
       <text x="0" y="112" text-anchor="middle">0</text>
       <text x="180" y="112" text-anchor="middle">180</text>
@@ -124,13 +146,11 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
       <text x="1185" y="112" text-anchor="middle">1185</text>
       <text x="1365" y="112" text-anchor="middle">1365</text>
     </g>
-    <!-- zone labels -->
     <g font-size="13" font-weight="700">
       <text x="682" y="140" text-anchor="middle" fill="var(--safe-text)">텍스트 안전영역 · 중앙 460px (모바일에서도 보이는 범위)</text>
       <text x="682" y="163" text-anchor="middle" fill="var(--safe-pc)">PC 안전영역 · 중앙 1000px (좁은 PC 화면에서 보이는 범위)</text>
       <text x="682" y="186" text-anchor="middle" fill="var(--bleed)">블리드 · 좌우 각 180px (잘리거나 배경색으로 대체되는 범위)</text>
     </g>
-    <!-- top annotation -->
     <text x="682" y="-20" text-anchor="middle" fill="var(--ink-soft)" font-size="12">PC 캔버스 1365 × 90 (@1x)</text>
   </g>
 </svg>
@@ -146,19 +166,15 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 <div class="diagram">
 <svg viewBox="0 0 435 195" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif" style="min-width:480px;max-width:560px;margin:0 auto">
   <g transform="translate(30,42)">
-    <!-- bleed -->
     <rect x="0" y="0" width="17.5" height="70" fill="var(--bleed)" opacity="0.18"/>
     <rect x="357.5" y="0" width="17.5" height="70" fill="var(--bleed)" opacity="0.18"/>
-    <!-- text safe -->
     <rect x="17.5" y="0" width="340" height="70" fill="var(--safe-text)" opacity="0.22"/>
     <rect x="0" y="0" width="375" height="70" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
     <line x1="17.5" y1="0" x2="17.5" y2="70" stroke="var(--safe-text)" stroke-width="1.2" stroke-dasharray="5 3"/>
     <line x1="357.5" y1="0" x2="357.5" y2="70" stroke="var(--safe-text)" stroke-width="1.2" stroke-dasharray="5 3"/>
     <line x1="187.5" y1="-6" x2="187.5" y2="76" stroke="var(--ink-soft)" stroke-width="0.8" stroke-dasharray="2 3"/>
-    <!-- mock content -->
     <text x="187.5" y="32" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="900">헤드라인 한 줄</text>
     <text x="187.5" y="50" text-anchor="middle" fill="var(--ink-soft)" font-size="8.5">서브카피 한 줄</text>
-    <!-- ruler -->
     <g fill="var(--ink-soft)" font-size="8.5" font-variant-numeric="tabular-nums">
       <text x="0" y="86" text-anchor="middle">0</text>
       <text x="17.5" y="86" text-anchor="middle">18</text>
@@ -185,7 +201,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
 <p>구성은 두 버전이 동일합니다. <strong>헤드라인 1줄 + 서브카피 1줄</strong>을 중앙 정렬하고, 메시지는 배너당 1개만 담습니다. 데코 오브젝트(3D 아이콘 등)는 텍스트 좌우에 배치하고 텍스트를 침범하지 않습니다.</p>
 <div class="tablewrap"><table>
 <tr><th>요소</th><th>PC (1365×90 @1x)</th><th>모바일 (375×70 @1x)</th><th>비고</th></tr>
-<tr><td>헤드라인</td><td><b class="dim">26~32px</b> Bold</td><td><b class="dim">16~20px</b> Bold</td><td>현행 배너 실측 26px / 한 줄 유지</td></tr>
+<tr><td>헤드라인</td><td><b class="dim">26~32px</b> Bold</td><td><b class="dim">16~20px</b> Bold</td><td>현행 배너 실측 약 28px / 한 줄 유지</td></tr>
 <tr><td>서브카피</td><td><b class="dim">14~16px</b> Regular~Medium</td><td><b class="dim">11~12px</b></td><td>혜택 조건·기간·유도 문구. 모바일 11px 미만 금지</td></tr>
 <tr><td>줄 간격</td><td>헤드라인–서브 사이 ~10px</td><td>~6px</td><td></td></tr>
 <tr><td>상하 여백</td><td>텍스트 블록 위아래 각 ~20px</td><td>각 ~12px</td><td>텍스트 블록 세로 중앙 정렬</td></tr>
@@ -206,7 +222,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
     <div style="position:absolute;top:0;bottom:0;right:33.2%;border-right:2px dashed var(--safe-text)"></div>
   </div>
   <div class="legend" style="padding-top:12px">
-    <span>헤드라인 26px Bold · 서브카피 15px · 줄 간격 10px · 텍스트 블록 상하 여백 약 21px (@1x 실측)</span>
+    <span>헤드라인 약 28px Bold · 서브카피 약 15px · 줄 간격 10px · 텍스트 블록 상하 여백 약 21px (@1x 실측)</span>
   </div>
 </div>
 <ul>
@@ -232,7 +248,90 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border-soft);
   <li>랜딩 URL 동작 확인</li>
 </ul>
 
+</section>
+
+<section class="panel" id="panel-fms" role="tabpanel" aria-labelledby="tab-fms">
+
+<h2><span class="no">01</span>지면이 동작하는 방식</h2>
+<p>FMS(파스토 셀러 관리 시스템) 로그인 후 <strong>모든 화면의 좌측 사이드바 하단</strong>에 고정 노출되는 카드형 배너입니다. 사이드바 폭이 고정이라 <strong>제작 규격 그대로(230×100) 1:1 표시</strong>되며, 띠배너와 달리 잘리거나 늘어나는 영역이 없습니다. 클릭 영역은 카드 전체(링크 1개)입니다.</p>
+<div class="callout">핵심: 잘림 걱정은 없지만 <strong>가로 230px의 작은 지면</strong>입니다. 문구를 최소화하고 글자 크기를 규격 아래로 줄이지 않는 것이 중요합니다.</div>
+
+<h2><span class="no">02</span>제작 사이즈</h2>
+<div class="tablewrap"><table>
+<tr><th>구분</th><th>디자인 캔버스 (@1x)</th><th>업로드 원본 (@2x, PNG)</th><th>비고</th></tr>
+<tr><td>카드</td><td><b class="dim">230 × 100</b></td><td><b class="dim">460 × 200</b></td><td>현행 서비스 배너 원본과 동일 규격 · 화면 표시도 230×100</td></tr>
+</table></div>
+<ul>
+  <li>PC/모바일 구분 없이 <strong>1종만 제작</strong>합니다.</li>
+  <li>비율(2.3:1)이 다르면 지면에 맞지 않으므로 캔버스 비율을 그대로 유지합니다.</li>
+</ul>
+
+<h2><span class="no">03</span>레이아웃 · 타이포그래피</h2>
+<div class="diagram">
+<svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif" style="min-width:340px;max-width:420px;margin:0 auto">
+  <g transform="translate(55,34)">
+    <rect x="0" y="0" width="230" height="100" rx="6" fill="var(--primary)" opacity="0.9"/>
+    <rect x="18" y="14" width="194" height="72" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+    <text x="21" y="34" fill="#fff" font-size="15" font-weight="900">타이틀 한 줄</text>
+    <text x="21" y="54" fill="#fff" font-size="10" opacity="0.92">서브카피 한두 줄로</text>
+    <text x="21" y="68" fill="#fff" font-size="10" opacity="0.92">혜택을 안내합니다</text>
+    <circle cx="192" cy="72" r="20" fill="#fff" opacity="0.25"/>
+    <text x="192" y="76" text-anchor="middle" fill="#fff" font-size="8.5" opacity="0.9">오브젝트</text>
+    <text x="115" y="-12" text-anchor="middle" fill="var(--ink-soft)" font-size="11">카드 캔버스 230 × 100 (@1x) · 화면에도 이 크기 그대로 표시</text>
+    <text x="115" y="122" text-anchor="middle" fill="var(--ink-soft)" font-size="11">점선 = 내부 여백 (좌 20px · 상 14px 내외)</text>
+    <g font-size="11" font-weight="700">
+      <text x="115" y="154" text-anchor="middle" fill="var(--safe-text)">타이틀 약 18px Bold · 서브카피 13~14px · 줄 간격 ~7px (@1x, 현행 배너 실측)</text>
+      <text x="115" y="174" text-anchor="middle" fill="var(--ink-soft)">텍스트 좌측 정렬 · 일러스트는 우측/우하단</text>
+    </g>
+  </g>
+</svg>
+</div>
+<ul>
+  <li><strong>타이틀 1줄(약 18px Bold) + 서브카피 1~2줄(13~14px)</strong> 구성, 좌측 정렬. 현행 배너 실측 기준입니다.</li>
+  <li>좌측 여백 20px, 상단 여백 14px 내외를 지키고, 텍스트와 일러스트가 겹치지 않게 배치합니다.</li>
+  <li>지면이 작으므로 서브카피 12px 미만은 금지합니다.</li>
+  <li>배경은 브랜드 컬러 단색 또는 은은한 그라데이션. 카드 모서리(둥근 처리)는 시스템이 적용하므로 직각으로 제작합니다.</li>
+  <li>카피 규칙은 띠배너와 동일합니다 (영문 약어 지양 · 단정 표현 금지 · 요일 검증).</li>
+</ul>
+
+<h2><span class="no">04</span>띠배너와 세트로 제작할 때</h2>
+<p>같은 캠페인을 홈페이지와 FMS에 함께 노출하는 경우 <strong>PC 띠배너(1365×90) + 모바일 띠배너(375×70) + FMS 카드(230×100) 3종 세트</strong>로 제작합니다. 카피와 오브젝트는 공유하되, 카드는 지면이 작으므로 문구를 한 번 더 줄입니다.</p>
+
+<h2><span class="no">05</span>제작 체크리스트</h2>
+<ul class="check">
+  <li>460×200 PNG(@2x), 비율 2.3:1인가</li>
+  <li>좌 20px·상 14px(@1x) 여백 안에 텍스트가 있는가</li>
+  <li>타이틀 약 18px, 서브카피 12px 이상인가 (@1x)</li>
+  <li>실제 크기(230×100)로 미리 봤을 때 문구가 읽히는가</li>
+  <li>카피 규칙 통과 (영문 약어·단정 표현·요일 검증)</li>
+  <li>랜딩 URL 동작 확인</li>
+</ul>
+
+</section>
+
 <footer>파스토 그로스마케팅팀 · 2026-08 기준 · 규격 관련 문의는 파스토 담당자에게</footer>
 </main>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tabs [role="tab"]');
+  var panels = { 'tab-home':'panel-home', 'tab-fms':'panel-fms' };
+  function select(id){
+    tabs.forEach(function(t){
+      var on = t.id === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById(panels[t.id]).classList.toggle('active', on);
+    });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      select(t.id);
+      history.replaceState(null, '', '#' + panels[t.id]);
+    });
+  });
+  if (location.hash === '#panel-fms') select('tab-fms');
+})();
+</script>
+
 </body>
 </html>
